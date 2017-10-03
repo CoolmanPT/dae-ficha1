@@ -41,31 +41,33 @@ public class Student implements Serializable {
     private String email;
     
     @ManyToOne
-    @JoinColumn(name = "COURSE_CODE")
+    @JoinColumn(name = "CODE")
     @NotNull
     private Course course;
 
+    
+
+    //EMPTY
+    protected Student() {
+    }
+
+
+
+    //FILLED
+    public Student(String username, String password, String nome, String email, Course course) {
+        this.username = username;
+        this.password = password;
+        this.nome = nome;
+        this.email = email;
+        this.course = course;
+    }
+    
     public Course getCourse() {
         return course;
     }
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    //EMPTY
-    protected Student() {
-    }
-
-    ;
-
-    //FILLED
-    public Student(String username, String password, String nome, String email, int course_id) {
-        this.username = username;
-        this.password = password;
-        this.nome = nome;
-        this.email = email;
-        this.course.setCode(course_id);
     }
 
     public String getUsername() {

@@ -6,6 +6,7 @@
 package web;
 
 import ejbs.StudentBean;
+import entitites.Course;
 import entitites.Student;
 import javax.faces.event.ActionEvent;
 import java.util.List;
@@ -33,7 +34,7 @@ public class AdministratorManager {
     private String newStudentPassword;
     private String newStudentName;
     private String newStudentEmail;
-    private int newStudentCourse;
+    private Course newStudentCourse;
     
     private Student currentStudent;
 
@@ -61,7 +62,7 @@ public class AdministratorManager {
 
     public String CreateStudent() {
         try {
-            studentBean.createStudent(newStudentUsername, newStudentPassword, newStudentName, newStudentEmail, newStudentCourse);
+            studentBean.createStudent(newStudentUsername, newStudentPassword, newStudentName, newStudentEmail, getNewStudentCourse());
             ClearNewStudent();
             getAllStudents();
             return "index?faces-redirect=true";
@@ -156,6 +157,20 @@ public class AdministratorManager {
      */
     public void setNewStudentEmail(String newStudentEmail) {
         this.newStudentEmail = newStudentEmail;
+    }
+
+    /**
+     * @return the newStudentCourse
+     */
+    public Course getNewStudentCourse() {
+        return newStudentCourse;
+    }
+
+    /**
+     * @param newStudentCourse the newStudentCourse to set
+     */
+    public void setNewStudentCourse(Course newStudentCourse) {
+        this.newStudentCourse = newStudentCourse;
     }
     
 }

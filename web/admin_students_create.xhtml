@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
-      >
+      
     <h:head>
         <title>Facelet Title</title>
     </h:head>
@@ -40,6 +40,13 @@
                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
             </h:inputText>
             <h:message for="email"/>
+            
+            <label>Course: </label>
+            <h:inputText id="course" 
+                         value="#{administratorManager.newStudentCourse}" 
+                         required="true" 
+                         requiredMessage="This field is required" />
+            <h:message for="course"/>
             <h:commandButton value="Create" action="#{administratorManager.CreateStudent}" id="submit" />
                          
             </h:panelGrid>

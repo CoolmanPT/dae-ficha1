@@ -12,8 +12,6 @@ import javax.ejb.EJBException;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContexts;
-import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -25,9 +23,9 @@ public class StudentBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createStudent(String username, String password, String nome, String email, int course_id) {
+    public void createStudent(String username, String password, String nome, String email, Course course) {
         try {
-            Student student = new Student(username, password, nome, email, course_id);
+            Student student = new Student(username, password, nome, email, course);
             entityManager.persist(student);
         } catch (EJBException e) {
             throw new EJBException(e.getMessage());

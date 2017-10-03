@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+      >
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+
+        <h:form>
+            <h:panelGrid columns="3" >
+            
+                         <label>Username: </label>
+            <h:inputText id="username" 
+                         value="#{administratorManager.currentStudent.username}" 
+                         required="true" 
+                         disabled="true"
+                         requiredMessage="This field is required" />
+            <h:message for="username"/>
+
+            <label>Name: </label>
+            <h:inputText id="name" 
+                         value="#{administratorManager.currentStudent.nome}" 
+                         required="true" 
+                         requiredMessage="This field is required" />
+            <h:message for="name"/>
+            <label>Email: </label>
+            <h:inputText id="email" 
+                         value="#{administratorManager.currentStudent.email}" 
+                         required="true" 
+                         requiredMessage="This field is required" >
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+            </h:inputText>
+            <h:message for="email"/>
+            <h:commandButton value="Update" action="#{administratorManager.UpdateStudent}" id="submit" />
+                         
+            </h:panelGrid>
+
+
+        </h:form>
+
+
+
+
+
+
+    </h:body>
+</html>
+

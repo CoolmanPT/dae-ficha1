@@ -29,21 +29,24 @@ public class ConfigBean {
    @PostConstruct
    public void populateDB() {
        try {
-           studentBean.createStudent("11", "11", "aa", "aa@aa.com", new Course(9119, "EI-D"));
-           studentBean.createStudent("22", "22", "bb", "bb@bb.com",new Course(9119, "EI-D"));
-           studentBean.createStudent("33", "33", "cc", "cc@cc.com",new Course(9119, "EI-D"));
-           studentBean.createStudent("44", "44", "dd", "dd@dd.com",new Course(9119, "EI-D"));
-           studentBean.createStudent("55", "5", "ee", "ee@ee.com",new Course(9119, "EI-D"));
            
            courseBean.createCourse(9119, "Engenharia Informatica-D");
            courseBean.createCourse(9115, "Engenharia Informatica-PL");
+           
+           studentBean.createStudent("11", "11", "aa", "aa@aa.com", 9119);
+           studentBean.createStudent("22", "22", "bb", "bb@bb.com", 9119);
+           studentBean.createStudent("33", "33", "cc", "cc@cc.com", 9119);
+           studentBean.createStudent("44", "44", "dd", "dd@dd.com", 9119);
+           studentBean.createStudent("55", "5", "ee", "ee@ee.com", 9115);
+           
+           
            
            
            
            
            
        } catch (EJBException e) {
-           System.out.println("Error" + e.getMessage());
+           System.out.println("Error!!!" + e.getMessage());
        }
    }
     

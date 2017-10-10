@@ -20,10 +20,10 @@ import javax.persistence.PersistenceContext;
 @Stateless
 public class CourseBean {
 
-   @PersistenceContext
+    @PersistenceContext
     private EntityManager entityManager;
-   
-       public List<Course> getAll() {
+
+    public List<Course> getAll() {
         try {
             List<Course> courses = entityManager.createNamedQuery("getAllCourses").getResultList();
             return courses;
@@ -31,8 +31,8 @@ public class CourseBean {
             return null;
         }
     }
-       
-           public void createCourse(int code, String name) {
+
+    public void createCourse(int code, String name) {
         try {
             Course course = new Course(code, name);
             entityManager.persist(course);

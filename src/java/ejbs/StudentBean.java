@@ -23,10 +23,15 @@ public class StudentBean {
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void createStudent(String username, String password, String nome, String email, Course course) {
+    public void createStudent(String username, String password, String nome, String email, int course_id) {
         try {
-            Student student = new Student(username, password, nome, email, course);
+            Course c = entityManager.find(Course.class, course_id);
+            if (c != null) {
+                Student student = new Student(username, password, nome, email, entityManager.find(Course.class, course_id));
             entityManager.persist(student);
+            }
+            
+            
         } catch (EJBException e) {
             throw new EJBException(e.getMessage());
         }

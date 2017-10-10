@@ -17,30 +17,33 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author bruno
  */
 @Entity
-@Table(name = "COURSES",
-uniqueConstraints =
-@UniqueConstraint(columnNames = {"NAME"}))
-
 @NamedQuery(
         name = "getAllCourses",
-        query = "SELECT e FROM Course e ORDER BY e.name"
+        query = "SELECT c FROM Course c ORDER BY c.name"
 )
-
+@Table(name = "COURSES",
+uniqueConstraints = @UniqueConstraint(columnNames = {"NAME"}))
 public class Course implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    @Override
+    public String toString() {
+        return name;
+    }
     @Id
     private int code;
-
+    
+    @NotNull
     private String name;
     
-    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE) 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    @NotNull
     private LinkedList<Student> students;
 
     private void AddStudent(Student student) {
@@ -62,10 +65,10 @@ public class Course implements Serializable {
         this.students = new LinkedList<Student>();
     }
 
-    public Course(int code, String nome) {
+    public Course(int code, String name) {
         this.students = new LinkedList<Student>();
         this.code = code;
-        this.name = nome;
+        this.name = name;
     }
 
     public int getCode() {

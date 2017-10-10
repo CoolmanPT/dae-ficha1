@@ -41,9 +41,9 @@ public class Student implements Serializable {
     private String email;
     
     @ManyToOne
-    @JoinColumn(name = "CODE")
+    @JoinColumn(name = "COURSE_CODE")
     @NotNull
-    public Course course_id;
+    public Course course;
 
     
 
@@ -54,20 +54,20 @@ public class Student implements Serializable {
 
 
     //FILLED
-    public Student(String username, String password, String nome, String email, int course_id) {
+    public Student(String username, String password, String nome, String email, Course course) {
         this.username = username;
         this.password = password;
         this.nome = nome;
         this.email = email;
-        this.course_id.setCode(course_id);
+        this.course = course;
     }
     
     public Course getCourse() {
-        return course_id;
+        return course;
     }
 
     public void setCourse(int course_id) {
-        this.course_id.setCode(course_id);
+        this.course.setCode(course_id);
     }
 
     public String getUsername() {

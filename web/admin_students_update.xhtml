@@ -34,6 +34,19 @@
                 <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
             </h:inputText>
             <h:message for="email"/>
+            
+            <label>Course: </label>
+                <h:selectOneMenu
+                    id="course"
+                    value="#{administratorManager.currentStudent.course.code}" >
+                    <f:selectItems
+                        value="#{administratorManager.allCourses}"
+                        var="course"
+                        itemValue="#{course.code}"
+                        itemLabel="#{course.name}" />
+                </h:selectOneMenu>
+            <h:message for="course"/>
+                <br></br>
             <h:commandButton value="Update" action="#{administratorManager.UpdateStudent}" id="submit" />
                          
             </h:panelGrid>

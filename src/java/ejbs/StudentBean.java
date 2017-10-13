@@ -64,6 +64,7 @@ public class StudentBean {
             student.setPassword(s.getPassword());
             student.setNome(s.getNome());
             student.setEmail(s.getEmail());
+            student.setCourse(entityManager.find(Course.class, s.getCourse().getCode()));
             entityManager.merge(student);
             
         } catch (EJBException e) {

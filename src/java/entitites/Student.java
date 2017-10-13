@@ -66,8 +66,8 @@ public class Student implements Serializable {
         return course;
     }
 
-    public void setCourse(int course_id) {
-        this.course.setCode(course_id);
+    public void setCourse(Course course) {
+        this.course = course;
     }
 
     public String getUsername() {

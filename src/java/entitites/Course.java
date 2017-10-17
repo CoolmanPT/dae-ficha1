@@ -45,6 +45,32 @@ public class Course implements Serializable {
     @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
     @NotNull
     private LinkedList<Student> students;
+    
+    @OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
+    @NotNull
+    private List<Subject> subjects;
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+    
+    private void AddSubject (Subject subject) {
+        try {
+            subjects.add(subject);
+        } catch (Exception e) {
+        }
+    }
+    
+    private void RemoveSubject (Subject subject) {
+        try {
+            subjects.remove(subject);
+        } catch (Exception e) {
+        }
+    }
 
     private void AddStudent(Student student) {
         try {
@@ -63,12 +89,14 @@ public class Course implements Serializable {
 
     public Course() {
         this.students = new LinkedList<Student>();
+        this.subjects = new LinkedList<Subject>();
     }
 
     public Course(int code, String name) {
         this.students = new LinkedList<Student>();
         this.code = code;
         this.name = name;
+        this.subjects = new LinkedList<Subject>();
     }
 
     public int getCode() {

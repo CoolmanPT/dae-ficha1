@@ -7,8 +7,10 @@ package web;
 
 import ejbs.CourseBean;
 import ejbs.StudentBean;
+import ejbs.SubjectBean;
 import entitites.Course;
 import entitites.Student;
+import entitites.Subject;
 import javax.faces.event.ActionEvent;
 import java.util.List;
 
@@ -31,6 +33,17 @@ public class AdministratorManager {
     
     @EJB
     private CourseBean courseBean;
+    
+    @EJB
+    private SubjectBean subjectBean;
+
+    public SubjectBean getSubjectBean() {
+        return subjectBean;
+    }
+
+    public void setSubjectBean(SubjectBean subjectBean) {
+        this.subjectBean = subjectBean;
+    }
 
     public CourseBean getCourseBean() {
         return courseBean;
@@ -131,6 +144,10 @@ public class AdministratorManager {
     
     public List<Course> getAllCourses() {
         return courseBean.getAll();
+    }
+    
+    public List<Subject> getAllSubjects(){
+        return subjectBean.getAll();
     }
 
     /**

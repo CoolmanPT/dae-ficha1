@@ -7,6 +7,7 @@ package ejbs;
 
 import entitites.Course;
 import entitites.Student;
+import entitites.Subject;
 import java.util.List;
 import javax.ejb.EJBException;
 import javax.ejb.Stateless;
@@ -27,11 +28,10 @@ public class StudentBean {
         try {
             Course c = entityManager.find(Course.class, course_id);
             if (c != null) {
-                Student student = new Student(username, password, nome, email, entityManager.find(Course.class, course_id));
-            entityManager.persist(student);
+                Student student = new Student(username, password, nome, email, c);
+                entityManager.persist(student);
             }
-            
-            
+
         } catch (EJBException e) {
             throw new EJBException(e.getMessage());
         }
@@ -46,9 +46,21 @@ public class StudentBean {
             throw new EJBException(e.getMessage());
         }
     }
-    
-    
-    
+
+    public void enrollStudentInSubject(Student student, Subject subject) {
+        try {
+            Student s = entityManager.find(Student.class, student.getUsername());
+            if (s == null) {
+                return;
+            } else {
+                s.subjects.add(subject);
+                entityManager.merge(s);
+            }
+
+        } catch (Exception e) {
+        }
+    }
+
     public List<Student> getAll() {
         try {
             List<Student> students = entityManager.createNamedQuery("getAllStudents").getResultList();
@@ -57,7 +69,7 @@ public class StudentBean {
             return null;
         }
     }
-    
+
     public void update(Student s) {
         try {
             Student student = entityManager.find(Student.class, s.getUsername());
@@ -66,7 +78,7 @@ public class StudentBean {
             student.setEmail(s.getEmail());
             student.setCourse(entityManager.find(Course.class, s.getCourse().getCode()));
             entityManager.merge(student);
-            
+
         } catch (EJBException e) {
             throw new EJBException(e.getMessage());
         }

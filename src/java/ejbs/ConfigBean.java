@@ -19,36 +19,33 @@ import javax.ejb.Startup;
 @Startup
 @Singleton
 public class ConfigBean {
+
     @EJB
     private StudentBean studentBean;
     @EJB
     private CourseBean courseBean;
-    
-    
+    @EJB
+    private SubjectBean subjectBean;
 
-   @PostConstruct
-   public void populateDB() {
-       try {
-           
-           courseBean.createCourse(9119, "Engenharia Informatica-D");
-           courseBean.createCourse(9115, "Engenharia Informatica-PL");
-           
-           studentBean.createStudent("11", "11", "aa", "aa@aa.com", 9119);
-           studentBean.createStudent("22", "22", "bb", "bb@bb.com", 9119);
-           studentBean.createStudent("33", "33", "cc", "cc@cc.com", 9119);
-           studentBean.createStudent("44", "44", "dd", "dd@dd.com", 9119);
-           studentBean.createStudent("55", "5", "ee", "ee@ee.com", 9115);
-           
-           
-           
-           
-           
-           
-           
-       } catch (EJBException e) {
-           System.out.println("Error!!!" + e.getMessage());
-       }
-   }
-    
-    
+    @PostConstruct
+    public void populateDB() {
+        try {
+
+            courseBean.createCourse(9119, "Engenharia Informatica-D");
+            courseBean.createCourse(9115, "Engenharia Informatica-PL");
+
+            studentBean.createStudent("11", "11", "aa", "aa@aa.com", 9119);
+            studentBean.createStudent("22", "22", "bb", "bb@bb.com", 9119);
+            studentBean.createStudent("33", "33", "cc", "cc@cc.com", 9119);
+            studentBean.createStudent("44", "44", "dd", "dd@dd.com", 9119);
+            studentBean.createStudent("55", "5", "ee", "ee@ee.com", 9115);
+
+            //subjectBean.createSubject(1, "DAE", 9119, 3, "2017-2018");
+            //subjectBean.createSubject(2, "DAD", 9119, 3, "2017-2018");
+
+        } catch (EJBException e) {
+            System.out.println("Error!!!" + e.getMessage());
+        }
+    }
+
 }
